@@ -69,11 +69,12 @@ export function Gallery() {
             <X className="size-5" />
           </button>
           <img
-            src={images[active].src}
-            alt={images[active].alt}
+            src={images[active]?.src}
+            alt={images[active]?.alt ?? ""}
             className="max-h-[85vh] w-auto max-w-full rounded-2xl shadow-lift"
             onClick={(e) => e.stopPropagation()}
           />
+
         </div>
       ) : null}
     </section>
