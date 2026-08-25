@@ -15,6 +15,7 @@ export const NAV_LINKS = [
   { label: "Why ATLAS", href: "#why" },
   { label: "Results", href: "#results" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];

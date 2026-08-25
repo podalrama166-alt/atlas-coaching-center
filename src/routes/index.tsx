@@ -48,6 +48,7 @@ function Index() {
         <Results />
         <Gallery />
         <Testimonials />
+        <Reviews />
         <Admission />
         <Faq />
         <Contact />
