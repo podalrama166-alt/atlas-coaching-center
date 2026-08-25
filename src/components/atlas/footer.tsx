@@ -1,6 +1,6 @@
-import { Facebook, Instagram, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/atlas-logo.png";
-import { ADDRESS, PHONE_DISPLAY, TEL_HREF } from "./site-data";
+import { ADDRESS, EMAIL, MAPS_URL, PHONE_DISPLAY, TEL_HREF } from "./site-data";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -9,6 +9,7 @@ const quickLinks = [
   { label: "Why Choose Us", href: "#why" },
   { label: "Results", href: "#results" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -85,9 +86,25 @@ export function Footer() {
                   {PHONE_DISPLAY}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                {ADDRESS}
+              <li>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="flex items-center gap-3 break-all transition-colors hover:text-gold"
+                >
+                  <Mail className="size-4 shrink-0 text-gold" />
+                  {EMAIL}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-start gap-3 transition-colors hover:text-gold"
+                >
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
+                  {ADDRESS}
+                </a>
               </li>
             </ul>
           </div>

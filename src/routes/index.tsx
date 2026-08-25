@@ -9,6 +9,7 @@ import { Benefits } from "@/components/atlas/benefits";
 import { Results } from "@/components/atlas/results";
 import { Gallery } from "@/components/atlas/gallery";
 import { Testimonials } from "@/components/atlas/testimonials";
+import { Reviews } from "@/components/atlas/reviews";
 import { Admission } from "@/components/atlas/admission";
 import { Faq } from "@/components/atlas/faq";
 import { Contact } from "@/components/atlas/contact";
