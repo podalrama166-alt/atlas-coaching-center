@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,17 +13,43 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Reveal, SectionHeading } from "./reveal";
-import { ADDRESS, PHONE_DISPLAY, TEL_HREF, WHATSAPP_HREF } from "./site-data";
+import {
+  ADDRESS,
+  EMAIL,
+  MAPS_URL,
+  PHONE_DISPLAY,
+  TEL_HREF,
+  WHATSAPP_HREF,
+} from "./site-data";
 
 export function Contact() {
   const [board, setBoard] = useState("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    toast.success("Enquiry noted", {
-      description: `Please also call ${PHONE_DISPLAY} so we can respond faster.`,
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const get = (k: string) => String(data.get(k) ?? "").trim().slice(0, 1000);
+
+    const body = [
+      `Student Name: ${get("studentName")}`,
+      `Parent Name: ${get("parentName")}`,
+      `Class: ${get("class")}`,
+      `Board: ${board || "-"}`,
+      `Phone: ${get("phone")}`,
+      "",
+      "Message:",
+      get("message"),
+    ].join("\n");
+
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      `Admission Enquiry — ${get("studentName")}`,
+    )}&body=${encodeURIComponent(body)}`;
+
+    toast.success("Enquiry ready to send", {
+      description: `It will be emailed to ${EMAIL}. You can also call ${PHONE_DISPLAY}.`,
     });
-    e.currentTarget.reset();
+    form.reset();
     setBoard("");
   }
 
