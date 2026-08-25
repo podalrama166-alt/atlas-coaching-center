@@ -4,6 +4,9 @@ export const PHONE_DISPLAY = "8339863449";
 export const TEL_HREF = `tel:+91${PHONE}`;
 export const WHATSAPP_HREF = `https://wa.me/91${PHONE}`;
 export const ADDRESS = "Aurobinda Nagar, 2nd Lane";
+export const EMAIL = "atlascoaching2026@gmail.com";
+export const MAIL_HREF = `mailto:${EMAIL}`;
+export const MAPS_URL = "https://maps.app.goo.gl/sPEGvydbcPxkxYP39";
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -12,6 +15,7 @@ export const NAV_LINKS = [
   { label: "Why ATLAS", href: "#why" },
   { label: "Results", href: "#results" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];

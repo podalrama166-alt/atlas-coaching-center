@@ -5,6 +5,10 @@ import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
 import g4 from "@/assets/gallery-4.jpg";
+import g5 from "@/assets/gallery-5.jpg";
+import g6 from "@/assets/gallery-6.jpg";
+import g7 from "@/assets/gallery-7.jpg";
+import g8 from "@/assets/gallery-8.jpg";
 import classroom from "@/assets/about-classroom.jpg";
 import student from "@/assets/hero-student.jpg";
 
@@ -15,6 +19,10 @@ const images = [
   { src: g3, alt: "One-on-one doubt clearing session", category: "Institute", span: "" },
   { src: g4, alt: "Students celebrating their results", category: "Results", span: "sm:col-span-2" },
   { src: student, alt: "ATLAS student in uniform", category: "Events", span: "sm:row-span-2" },
+  { src: g5, alt: "Students writing a class test at ATLAS", category: "Tests", span: "sm:col-span-2" },
+  { src: g6, alt: "Teacher explaining maths on the whiteboard", category: "Classes", span: "" },
+  { src: g7, alt: "Students doing a science practical", category: "Activities", span: "" },
+  { src: g8, alt: "Student receiving a trophy at ATLAS", category: "Achievements", span: "sm:col-span-2" },
 ];
 
 export function Gallery() {

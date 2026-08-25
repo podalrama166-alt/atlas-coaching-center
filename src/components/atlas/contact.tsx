@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,17 +13,43 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Reveal, SectionHeading } from "./reveal";
-import { ADDRESS, PHONE_DISPLAY, TEL_HREF, WHATSAPP_HREF } from "./site-data";
+import {
+  ADDRESS,
+  EMAIL,
+  MAPS_URL,
+  PHONE_DISPLAY,
+  TEL_HREF,
+  WHATSAPP_HREF,
+} from "./site-data";
 
 export function Contact() {
   const [board, setBoard] = useState("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    toast.success("Enquiry noted", {
-      description: `Please also call ${PHONE_DISPLAY} so we can respond faster.`,
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const get = (k: string) => String(data.get(k) ?? "").trim().slice(0, 1000);
+
+    const body = [
+      `Student Name: ${get("studentName")}`,
+      `Parent Name: ${get("parentName")}`,
+      `Class: ${get("class")}`,
+      `Board: ${board || "-"}`,
+      `Phone: ${get("phone")}`,
+      "",
+      "Message:",
+      get("message"),
+    ].join("\n");
+
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      `Admission Enquiry — ${get("studentName")}`,
+    )}&body=${encodeURIComponent(body)}`;
+
+    toast.success("Enquiry ready to send", {
+      description: `It will be emailed to ${EMAIL}. You can also call ${PHONE_DISPLAY}.`,
     });
-    e.currentTarget.reset();
+    form.reset();
     setBoard("");
   }
 
@@ -72,7 +98,27 @@ export function Contact() {
               </span>
             </a>
 
-            <div className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+            >
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-gold text-gold-foreground">
+                <Mail className="size-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Email
+                </span>
+                <span className="block truncate text-base font-extrabold text-navy">{EMAIL}</span>
+              </span>
+            </a>
+
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 rounded-3xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+            >
               <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-accent text-primary">
                 <MapPin className="size-5" />
               </span>
@@ -81,18 +127,18 @@ export function Contact() {
                   Address
                 </span>
                 <span className="block text-base font-bold text-navy">{ADDRESS}</span>
+                <span className="block text-xs font-semibold text-primary">Open in Google Maps</span>
               </span>
-            </div>
+            </a>
 
-            {/* Google Maps placeholder — embed the institute map here once the exact location is available. */}
-            <div className="grid h-52 place-items-center rounded-3xl border border-dashed border-border bg-card/60 text-center">
-              <div className="px-6">
-                <MapPin className="mx-auto size-6 text-primary" />
-                <p className="mt-2 text-sm font-bold text-navy">Google Map coming soon</p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  The exact map location will be added here.
-                </p>
-              </div>
+            <div className="overflow-hidden rounded-3xl border border-border shadow-card">
+              <iframe
+                title="ATLAS CBSE / ICSE Coaching location on Google Maps"
+                src="https://www.google.com/maps?q=Aurobinda%20Nagar%202nd%20Lane%2C%20Brahmapur%2C%20Ganjam%2C%20Odisha&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-56 w-full border-0"
+              />
             </div>
           </Reveal>
 
