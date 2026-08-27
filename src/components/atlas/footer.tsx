@@ -115,6 +115,24 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="group mt-6 flex items-center gap-3 rounded-2xl border border-navy-foreground/15 bg-navy-foreground/5 p-4 transition-colors hover:border-gold hover:bg-navy-foreground/10"
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-gradient-gold text-gold-foreground">
+                <Navigation className="size-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-bold text-navy-foreground">Find Us</span>
+                <span className="block text-xs text-navy-foreground/60 group-hover:text-gold">
+                  Open our location in Google Maps
+                </span>
+              </span>
+              <ExternalLink className="ml-auto size-4 shrink-0 text-navy-foreground/50 group-hover:text-gold" />
+            </a>
           </div>
         </div>
 
@@ -122,10 +140,16 @@ export function Footer() {
           <p className="text-sm font-semibold text-gold">
             ATLAS – Better Education, Better Tomorrow!
           </p>
-          <p className="text-xs text-navy-foreground/50">
-            © {new Date().getFullYear()} ATLAS CBSE / ICSE Coaching. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-1 sm:items-end">
+            <p className="text-xs text-navy-foreground/50">
+              © {new Date().getFullYear()} ATLAS CBSE / ICSE Coaching. All rights reserved.
+            </p>
+            <Link to="/admin" className="text-xs text-navy-foreground/40 transition-colors hover:text-gold">
+              Admin — Manage Gallery
+            </Link>
+          </div>
         </div>
+
       </div>
     </footer>
   );
