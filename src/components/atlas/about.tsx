@@ -1,5 +1,6 @@
 import { BadgeCheck, BookOpenCheck, Layers, UserRoundCheck } from "lucide-react";
 import { Reveal, SectionHeading } from "./reveal";
+import { DIRECTOR } from "./site-data";
 import classroom from "@/assets/about-classroom.jpg";
 
 const pillars = [
