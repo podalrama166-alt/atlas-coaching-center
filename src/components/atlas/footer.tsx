@@ -1,6 +1,8 @@
-import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
+import { ExternalLink, Facebook, Instagram, Mail, MapPin, Navigation, Phone, Youtube } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/atlas-logo.png";
 import { ADDRESS, EMAIL, MAPS_URL, PHONE_DISPLAY, TEL_HREF, YOUTUBE_URL } from "./site-data";
+
 
 const quickLinks = [
   { label: "Home", href: "#home" },
