@@ -44,7 +44,15 @@ export function Footer() {
                 ATLAS CLASSES
               </p>
               <div className="mt-3 flex gap-3">
-                {/* Social URLs to be added when available. */}
+                <a
+                  href={YOUTUBE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="ATLAS YouTube channel"
+                  className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80 transition-colors hover:border-gold hover:text-gold"
+                >
+                  <Youtube className="size-4" />
+                </a>
                 <span
                   aria-label="Instagram — link coming soon"
                   className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80"
