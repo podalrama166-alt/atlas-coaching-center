@@ -132,17 +132,17 @@ export function Contact() {
               </span>
             </a>
 
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-3 rounded-3xl border border-border bg-gradient-navy px-6 py-8 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
-            >
-              <MapPin className="size-5 text-gold" />
-              <span className="font-semibold text-navy-foreground">
-                View location on Google Maps
+            <div className="flex items-center gap-4 rounded-3xl border border-border bg-gradient-navy p-6 shadow-card">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-gold text-gold-foreground font-display text-lg font-extrabold">
+                SM
               </span>
-            </a>
+              <span className="min-w-0">
+                <span className="block text-xs font-bold uppercase tracking-wider text-navy-foreground/70">
+                  Director
+                </span>
+                <span className="block text-lg font-extrabold text-navy-foreground">{DIRECTOR}</span>
+              </span>
+            </div>
           </Reveal>
 
           <Reveal delay={100}>
