@@ -68,6 +68,13 @@ export function Gallery() {
               Our gallery is being updated with the latest moments from ATLAS classes, tests and
               celebrations.
             </p>
+            <Link
+              to="/admin"
+              className="mt-2 rounded-full border border-border px-4 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:border-gold hover:text-gold"
+            >
+              Admin — Upload photos
+            </Link>
+
           </div>
         ) : (
           <div className="mt-14 grid auto-rows-[190px] grid-cols-1 gap-4 sm:grid-cols-3 lg:auto-rows-[220px] lg:grid-cols-4">
