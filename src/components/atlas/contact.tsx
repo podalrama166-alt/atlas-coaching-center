@@ -15,6 +15,7 @@ import {
 import { Reveal, SectionHeading } from "./reveal";
 import {
   ADDRESS,
+  DIRECTOR,
   EMAIL,
   MAPS_URL,
   PHONE_DISPLAY,
