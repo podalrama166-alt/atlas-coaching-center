@@ -131,15 +131,17 @@ export function Contact() {
               </span>
             </a>
 
-            <div className="overflow-hidden rounded-3xl border border-border shadow-card">
-              <iframe
-                title="ATLAS CBSE / ICSE Coaching location on Google Maps"
-                src="https://www.google.com/maps?q=Aurobinda%20Nagar%202nd%20Lane%2C%20Brahmapur%2C%20Ganjam%2C%20Odisha&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-56 w-full border-0"
-              />
-            </div>
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-3 rounded-3xl border border-border bg-gradient-navy px-6 py-8 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+            >
+              <MapPin className="size-5 text-gold" />
+              <span className="font-semibold text-navy-foreground">
+                View location on Google Maps
+              </span>
+            </a>
           </Reveal>
 
           <Reveal delay={100}>
