@@ -101,15 +101,11 @@ function AdminPage() {
         ) : !userId ? (
           <SignIn />
         ) : !isAdmin ? (
-          <div className="rounded-3xl border border-border bg-card p-8 text-center shadow-card">
-            <h2 className="font-display text-xl font-bold">Admin access required</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              This account is signed in but is not an administrator of the ATLAS gallery.
-            </p>
-          </div>
+          <ClaimAdmin onClaimed={() => void refreshSession()} />
         ) : (
           <GalleryManager userId={userId} />
         )}
+
       </main>
     </div>
   );
