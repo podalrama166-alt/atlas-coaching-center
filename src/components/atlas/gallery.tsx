@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { X, ImageIcon, Loader2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
 import { Reveal, SectionHeading } from "./reveal";
 import { fetchGalleryImages, type GalleryImage } from "@/lib/gallery";
 
