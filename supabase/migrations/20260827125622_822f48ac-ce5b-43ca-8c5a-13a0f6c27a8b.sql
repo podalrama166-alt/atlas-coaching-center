@@ -1,0 +1,1 @@
+revoke execute on function public.admin_exists() from anon;

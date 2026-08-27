@@ -101,21 +101,66 @@ function AdminPage() {
         ) : !userId ? (
           <SignIn />
         ) : !isAdmin ? (
-          <div className="rounded-3xl border border-border bg-card p-8 text-center shadow-card">
-            <h2 className="font-display text-xl font-bold">Admin access required</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              This account is signed in but is not an administrator of the ATLAS gallery.
-            </p>
-          </div>
+          <ClaimAdmin onClaimed={() => void refreshSession()} />
         ) : (
           <GalleryManager userId={userId} />
         )}
+
       </main>
     </div>
   );
 }
 
+function ClaimAdmin({ onClaimed }: { onClaimed: () => void }) {
+  const [busy, setBusy] = useState(false);
+  const [canClaim, setCanClaim] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    void (async () => {
+      const { data } = await supabase.rpc("admin_exists");
+      setCanClaim(data === false);
+    })();
+  }, []);
+
+  return (
+    <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-8 text-center shadow-card">
+      <h2 className="font-display text-xl font-bold">Admin access required</h2>
+      {canClaim ? (
+        <>
+          <p className="mt-2 text-sm text-muted-foreground">
+            No administrator has been set up yet. Claim admin access for this account to start
+            managing the gallery.
+          </p>
+          <Button
+            className="mt-6 w-full"
+            disabled={busy}
+            onClick={async () => {
+              setBusy(true);
+              const { data, error } = await supabase.rpc("claim_first_admin");
+              setBusy(false);
+              if (error || !data) {
+                toast.error(error?.message ?? "Admin already set up");
+                setCanClaim(false);
+              } else {
+                toast.success("You are now the gallery admin");
+                onClaimed();
+              }
+            }}
+          >
+            {busy ? <Loader2 className="size-4 animate-spin" /> : null} Become admin
+          </Button>
+        </>
+      ) : (
+        <p className="mt-2 text-sm text-muted-foreground">
+          This account is signed in but is not an administrator of the ATLAS gallery.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function SignIn() {
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -126,13 +171,26 @@ function SignIn() {
       onSubmit={async (e) => {
         e.preventDefault();
         setBusy(true);
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        setBusy(false);
-        if (error) toast.error(error.message);
-        else toast.success("Welcome back!");
+        if (mode === "signin") {
+          const { error } = await supabase.auth.signInWithPassword({ email, password });
+          setBusy(false);
+          if (error) toast.error(error.message);
+          else toast.success("Welcome back!");
+        } else {
+          const { error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: { emailRedirectTo: `${window.location.origin}/admin` },
+          });
+          setBusy(false);
+          if (error) toast.error(error.message);
+          else toast.success("Account created — you can sign in now.");
+        }
       }}
     >
-      <h2 className="font-display text-2xl font-bold">Admin sign in</h2>
+      <h2 className="font-display text-2xl font-bold">
+        {mode === "signin" ? "Admin sign in" : "Create admin account"}
+      </h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Sign in to manage the gallery photos of ATLAS.
       </p>
@@ -154,18 +212,28 @@ function SignIn() {
             id="password"
             type="password"
             required
+            minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
+            autoComplete={mode === "signin" ? "current-password" : "new-password"}
           />
         </div>
         <Button type="submit" className="w-full" disabled={busy}>
-          {busy ? <Loader2 className="size-4 animate-spin" /> : null} Sign in
+          {busy ? <Loader2 className="size-4 animate-spin" /> : null}
+          {mode === "signin" ? "Sign in" : "Create account"}
         </Button>
+        <button
+          type="button"
+          className="w-full text-xs text-muted-foreground underline-offset-4 hover:underline"
+          onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
+        >
+          {mode === "signin" ? "First time? Create an admin account" : "Already have an account? Sign in"}
+        </button>
       </div>
     </form>
   );
 }
+
 
 function GalleryManager({ userId }: { userId: string }) {
   const [images, setImages] = useState<GalleryImage[]>([]);
