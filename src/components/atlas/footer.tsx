@@ -1,6 +1,6 @@
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import logo from "@/assets/atlas-logo.png";
-import { ADDRESS, EMAIL, MAPS_URL, PHONE_DISPLAY, TEL_HREF } from "./site-data";
+import { ADDRESS, EMAIL, MAPS_URL, PHONE_DISPLAY, TEL_HREF, YOUTUBE_URL } from "./site-data";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -44,7 +44,15 @@ export function Footer() {
                 ATLAS CLASSES
               </p>
               <div className="mt-3 flex gap-3">
-                {/* Social URLs to be added when available. */}
+                <a
+                  href={YOUTUBE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="ATLAS YouTube channel"
+                  className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80 transition-colors hover:border-gold hover:text-gold"
+                >
+                  <Youtube className="size-4" />
+                </a>
                 <span
                   aria-label="Instagram — link coming soon"
                   className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80"

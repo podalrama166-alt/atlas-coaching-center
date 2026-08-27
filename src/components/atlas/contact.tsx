@@ -15,6 +15,7 @@ import {
 import { Reveal, SectionHeading } from "./reveal";
 import {
   ADDRESS,
+  DIRECTOR,
   EMAIL,
   MAPS_URL,
   PHONE_DISPLAY,
@@ -131,14 +132,16 @@ export function Contact() {
               </span>
             </a>
 
-            <div className="overflow-hidden rounded-3xl border border-border shadow-card">
-              <iframe
-                title="ATLAS CBSE / ICSE Coaching location on Google Maps"
-                src="https://www.google.com/maps?q=Aurobinda%20Nagar%202nd%20Lane%2C%20Brahmapur%2C%20Ganjam%2C%20Odisha&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-56 w-full border-0"
-              />
+            <div className="flex items-center gap-4 rounded-3xl border border-border bg-gradient-navy p-6 shadow-card">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-gold text-gold-foreground font-display text-lg font-extrabold">
+                SM
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-bold uppercase tracking-wider text-navy-foreground/70">
+                  Director
+                </span>
+                <span className="block text-lg font-extrabold text-navy-foreground">{DIRECTOR}</span>
+              </span>
             </div>
           </Reveal>
 

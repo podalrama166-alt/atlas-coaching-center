@@ -1,5 +1,6 @@
 import { BadgeCheck, BookOpenCheck, Layers, UserRoundCheck } from "lucide-react";
 import { Reveal, SectionHeading } from "./reveal";
+import { DIRECTOR } from "./site-data";
 import classroom from "@/assets/about-classroom.jpg";
 
 const pillars = [
@@ -53,6 +54,16 @@ export function About() {
               }
               subtitle="ATLAS is a CBSE / ICSE coaching institute dedicated to helping students from Class 4th to Class 10th build strong academic foundations and achieve better results."
             />
+
+            <Reveal delay={40}>
+              <p className="mt-6 text-sm text-muted-foreground">
+                Under the guidance of{" "}
+                <span className="font-semibold text-navy">{DIRECTOR}</span>, Director of ATLAS, the
+                institute combines expert teaching with personal attention to help every student
+                grow in confidence and results.
+              </p>
+            </Reveal>
+
 
             <Reveal delay={80}>
               <ul className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
