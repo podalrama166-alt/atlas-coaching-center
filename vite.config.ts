@@ -12,4 +12,8 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Netlify sets NETLIFY=true during its builds. This app is server-rendered,
+  // so on Netlify we must build the Netlify Functions preset — publishing the
+  // static client dir alone (no index.html at its root) causes site-wide 404s.
+  ...(process.env.NETLIFY ? { nitro: { preset: "netlify" } } : {}),
 });
