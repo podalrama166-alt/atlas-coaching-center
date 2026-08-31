@@ -112,6 +112,18 @@ export function Gallery() {
             ))}
           </div>
         )}
+
+        {!loading && images.length > 0 ? (
+          <div className="mt-8 text-center">
+            <Link
+              to="/admin"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:border-gold hover:text-gold"
+            >
+              <ImageIcon className="size-4" />
+              Admin — Add more images
+            </Link>
+          </div>
+        ) : null}
       </div>
 
       {active !== null && images[active] ? (
