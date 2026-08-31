@@ -1,0 +1,6 @@
+# This app is server-rendered (TanStack Start), so Netlify must run the
+# server function, not serve a static SPA. vite.config.ts switches the build
+# to the Netlify preset automatically when NETLIFY=true (set by Netlify CI).
+[build]
+  command = "npm run build"
+  publish = "dist"
