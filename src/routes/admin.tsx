@@ -101,60 +101,17 @@ function AdminPage() {
         ) : !userId ? (
           <SignIn />
         ) : !isAdmin ? (
-          <ClaimAdmin onClaimed={() => void refreshSession()} />
+          <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-8 text-center shadow-card">
+            <h2 className="font-display text-xl font-bold">Admin access required</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              This account is signed in but is not an administrator of the ATLAS management panel.
+            </p>
+          </div>
         ) : (
           <GalleryManager userId={userId} />
         )}
 
       </main>
-    </div>
-  );
-}
-
-function ClaimAdmin({ onClaimed }: { onClaimed: () => void }) {
-  const [busy, setBusy] = useState(false);
-  const [canClaim, setCanClaim] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    void (async () => {
-      const { data } = await supabase.rpc("admin_exists");
-      setCanClaim(data === false);
-    })();
-  }, []);
-
-  return (
-    <div className="mx-auto max-w-md rounded-3xl border border-border bg-card p-8 text-center shadow-card">
-      <h2 className="font-display text-xl font-bold">Admin access required</h2>
-      {canClaim ? (
-        <>
-          <p className="mt-2 text-sm text-muted-foreground">
-            No administrator has been set up yet. Claim admin access for this account to start
-            managing the gallery.
-          </p>
-          <Button
-            className="mt-6 w-full"
-            disabled={busy}
-            onClick={async () => {
-              setBusy(true);
-              const { data, error } = await supabase.rpc("claim_first_admin");
-              setBusy(false);
-              if (error || !data) {
-                toast.error(error?.message ?? "Admin already set up");
-                setCanClaim(false);
-              } else {
-                toast.success("You are now the gallery admin");
-                onClaimed();
-              }
-            }}
-          >
-            {busy ? <Loader2 className="size-4 animate-spin" /> : null} Become admin
-          </Button>
-        </>
-      ) : (
-        <p className="mt-2 text-sm text-muted-foreground">
-          This account is signed in but is not an administrator of the ATLAS gallery.
-        </p>
-      )}
     </div>
   );
 }

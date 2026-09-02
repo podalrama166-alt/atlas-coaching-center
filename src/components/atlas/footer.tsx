@@ -55,18 +55,24 @@ export function Footer() {
                 >
                   <Youtube className="size-4" />
                 </a>
-                <span
-                  aria-label="Instagram — link coming soon"
+                <a
+                  href="https://www.instagram.com/acme.knowledge?utm_source=qr&igsi=MXM5NXF5bmhxbnE0bw%3D%3D"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="ATLAS Instagram profile"
                   className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80"
                 >
                   <Instagram className="size-4" />
-                </span>
-                <span
-                  aria-label="Facebook — link coming soon"
+                </a>
+                <a
+                  href="https://www.facebook.com/share/1Bhr8dZGyD/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="ATLAS Facebook page"
                   className="grid size-10 place-items-center rounded-xl border border-navy-foreground/20 text-navy-foreground/80"
                 >
                   <Facebook className="size-4" />
-                </span>
+                </a>
               </div>
             </div>
           </div>
