@@ -47,6 +47,33 @@ export type Database = {
         }
         Relationships: []
       }
+      student_results: {
+        Row: {
+          created_at: string
+          id: string
+          rank: number
+          score: string
+          student_name: string
+          year_of_passing: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          rank: number
+          score: string
+          student_name: string
+          year_of_passing?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          rank?: number
+          score?: string
+          student_name?: string
+          year_of_passing?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
